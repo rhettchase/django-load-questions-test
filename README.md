@@ -64,3 +64,27 @@ python manage.py load_questions data/questions_and_rules.xlsx
 10. Test the questionnaire logic by visiting the below route. Send a POST request with the tool of your choice (e.g. Thunder Client or curl)
 
 POST route: `http://127.0.0.1:8000/questionnaire/process_question/<question_id>/`
+
+## Additional Notes
+
+- For production deployment, consider using a more robust setup with a WSGI server like Gunicorn, and a web server like Nginx.
+- `process_question` view [views.py](./question_project/questionnaire/views.py) accepts POST requests with the response data included in the request body.
+
+If you’re sending the data to a frontend application, you can use the following approach:
+
+```javascript
+fetch('http://127.0.0.1:8000/questionnaire/process_question/1/', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({response: 'Yes'}),
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+```
+
+### CSRF Considerations
+
+Note that I included `@csrf_exempt` in the view decorator for simplicity. However, for production environments, it’s crucial to handle CSRF tokens properly in Django for security reasons. If you’re working with a frontend, you should ensure that the CSRF token is included in the request headers.
