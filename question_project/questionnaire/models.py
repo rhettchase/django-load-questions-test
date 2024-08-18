@@ -2,7 +2,7 @@ from django.db import models
 
 class Question(models.Model):
     text = models.CharField(max_length=255)
-    options = models.JSONField(blank=True, null=True)  # To handle JSON options
+    options = models.JSONField(blank=True, null=True)
     data_type = models.CharField(max_length=50)
 
     def __str__(self):
@@ -16,3 +16,10 @@ class Rule(models.Model):
 
     def __str__(self):
         return f"Rule for {self.question.text}"
+
+class Answer(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    response = models.JSONField()
+
+    def __str__(self):
+        return f"Answer to {self.question.text}"
