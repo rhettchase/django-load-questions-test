@@ -10,14 +10,6 @@ This Django project provides a backend for managing questionnaires with dynamic 
 - Process user responses and navigate through the questionnaire based on predefined rules.
 - Admin interface for managing questions and rules.
 
-## Prerequisites
-
-Before you begin, ensure you have the following installed on your system:
-
-- Python 3.8+
-- Git
-- PostgreSQL (Optional, but recommended if you want to use PostgreSQL instead of SQLite)
-
 ## Getting Started
 
 1. Clone repository
