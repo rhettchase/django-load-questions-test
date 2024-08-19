@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "question_id": 1,
+        "condition": "response == 'Under $20,000'",
+        "next_question_id": 2,
+        "message": null
+    },
+    {
+        "id": 2,
+        "question_id": 2,
+        "condition": "response == 'Yes'",
+        "next_question_id": 4,
+        "message": null
+    },
+    {
+        "id": 3,
+        "question_id": 1,
+        "condition": "response == '$20,000 - $50,000' or response == '$50,000 - $100,000' or response == '$100,000+'",
+        "next_question_id": 3,
+        "message": null
+    },
+    {
+        "id": 4,
+        "question_id": 3,
+        "condition": "response == 'Yes' and previous_responses['question_2'] == 'Yes'",
+        "next_question_id": 5,
+        "message": null
+    },
+    {
+        "id": 5,
+        "question_id": 3,
+        "condition": "response == 'No'",
+        "next_question_id": null,
+        "message": "You're not eligible for the premium plan."
+    }
+]
