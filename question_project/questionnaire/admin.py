@@ -8,8 +8,14 @@ class QuestionAdmin(admin.ModelAdmin):
 
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'question', 'response')
-    search_fields = ('question__text',)
+    list_display = ('question', 'response', 'user', 'created_at')
+    list_filter = ('question', 'created_at')
+    search_fields = ('response', 'question__text')
+    readonly_fields = ('created_at',)  # Make 'created_at' read-only in the detail view
+
+    # define the fields to be displayed in the detail view
+    fields = ('question', 'response', 'user', 'created_at')
+
 
 @admin.register(Rule)
 class RuleAdmin(admin.ModelAdmin):
